@@ -27,7 +27,8 @@ class PizzaBaseForm extends PureComponent{
 const mapStateToProps = function (state) {
 
     return {
-        base: state.baseReducer
+        base: state.baseReducer.base,
+        price: state.baseReducer.price
 
     }
 }
