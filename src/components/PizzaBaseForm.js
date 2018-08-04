@@ -36,9 +36,7 @@ class PizzaBaseForm extends PureComponent{
         // console.log(this.props.baseprice + this.props.sauceprice)
 
       }
-    componentDidMount(){
 
-    }
     render(){
         let toppingProps = [this.props.topping1, this.props.topping2, this.props.topping3]
 
@@ -48,9 +46,9 @@ class PizzaBaseForm extends PureComponent{
         return(
             <div>
                 <p>SELECT A BASE</p>
-		{this.renderRedirect()}
+		        {this.renderRedirect()}
                 <select value={this.state.base} onChange= {this.handleChange}>
-                <option>Choose </option>
+                    <option>Choose </option>
                     <option value={small} >Small 25cm €8.99</option>
                     <option value={medium}>Medium 30cm €10.49</option>
                     <option value={large}>Large 35cm €13.49</option>
@@ -60,7 +58,7 @@ class PizzaBaseForm extends PureComponent{
                    Your base: {this.props.base}
                 </div>
                 <div>
-                   {!this.props.sauce && <p>Your sauce: {this.props.sauce}</p>}
+                   {this.props.sauce && <p>Your sauce: {this.props.sauce}</p>}
                 </div>
                 <div>
                 <ul>
