@@ -28,7 +28,7 @@ class TotalPrice extends PureComponent {
         if (!this.props.baseprice) {totalPrice = 0}
         if (!this.props.sauceprice) {totalPrice = this.props.baseprice}
         if (this.props.sauceprice) {totalPrice = this.props.baseprice + this.props.sauceprice + totalTops}
-
+        if (this.props.drone === true){totalPrice = totalPrice*1.1}
         return (
             <div>
                 <p>  Your total price:</p>
@@ -44,7 +44,8 @@ const mapStateToProps = (state) => {
         sauceprice: state.sauceReducer.price,
         toppingprice1: state.toppingReducer.price1,
         toppingprice2: state.toppingReducer.price2,
-        toppingprice3: state.toppingReducer.price3
+        toppingprice3: state.toppingReducer.price3,
+        drone: state.drone
 
     }
 }

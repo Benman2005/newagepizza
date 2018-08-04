@@ -9,10 +9,9 @@ import {Redirect} from 'react-router-dom'
 
 
 class PizzaBaseForm extends PureComponent{
-    state = {baseReducer: {}}
-    state = {
-        redirect: false
-      }
+    state = {baseReducer: {},
+    redirect: false}
+    
     setRedirect = () => {
     this.setState({
         redirect: true
@@ -31,10 +30,6 @@ class PizzaBaseForm extends PureComponent{
         this.props.selectBase(event.target.value)
         console.log(event.target.value)
         this.setState({ redirect: true })
-        // this.calculateTotal()
-        // this.addToTotal(this.props.baseprice)
-        // console.log(this.props.baseprice + this.props.sauceprice)
-
       }
     componentDidMount(){
 

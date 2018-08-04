@@ -6,14 +6,24 @@ import {Redirect} from 'react-router-dom'
 import {selectTopping1} from '../actions/topping'
 import {selectTopping2} from '../actions/topping'
 import {selectTopping3} from '../actions/topping'
+import {drone}from '../actions/drone'
 
 class ToppingsForm extends PureComponent{
     state = {}
+    state = { active: false }
 
-    
+    toggle = () => {
+      this.setState({
+        active: this.state.active
+      })
+    }
+    handleChange = () => {
+        this.props.drone()
+    }
+      
     handleChange1 = event => {
         this.props.selectTopping1(event.target.value)
-        // this.setState({ redirect: true })
+
     }
     handleChange2 = event => {
         this.props.selectTopping2(event.target.value)
@@ -64,7 +74,10 @@ class ToppingsForm extends PureComponent{
             <div>
             <Link to= {'/sauce'}>Change sauce</Link>
             </div>
-            
+            <label className="switch">
+                <p>Drone Delivery (10% of total price)</p>
+            <input size="16" type="checkbox"  onChange={this.handleChange} />
+            </label>
             <div>
             <TotalPrice />
             </div>
@@ -84,7 +97,8 @@ const mapStateToProps = function (state) {
         topping1: state.toppingReducer.topping1,
         topping2: state.toppingReducer.topping2,
         topping3: state.toppingReducer.topping3,
+        active: state.active
 
     }
 }
-export default connect (mapStateToProps, {selectTopping1, selectTopping2, selectTopping3})(ToppingsForm)
+export default connect (mapStateToProps, {selectTopping1, selectTopping2, selectTopping3, drone})(ToppingsForm)
