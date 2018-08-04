@@ -3,7 +3,7 @@ import {SELECT_BASE} from '../actions/base'
 export const bases = ["small (25cm)", "medium(30cm)", "large(35 cm)"]
 
 export default function (state ={}, action) {
-    // console.log(action.payload)
+
     
     switch (action.type) {
         
@@ -24,6 +24,8 @@ export default function (state ={}, action) {
                     price: 13.49,
                     base: action.payload
                 }
+                default:
+                return state
             }
         default: 
         return state

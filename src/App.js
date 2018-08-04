@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 import PizzaBase from './components/PizzaBase'
+import SauceForm from './components/SauceForm';
+import ToppingsForm from './components/ToppingsForm';
 
 
 class App extends Component {
@@ -16,6 +18,8 @@ class App extends Component {
         <Router>
         <div>
           <Route exact path='/base' component={PizzaBase} />
+          <Route exact path='/sauce' component={SauceForm} />
+          <Route exact path='/toppings' component={ToppingsForm} />
           <Route exact path="/" render={ () => <Redirect to="/base" /> } />
         </div>
         </Router>
