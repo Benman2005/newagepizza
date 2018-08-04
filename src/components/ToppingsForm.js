@@ -9,6 +9,7 @@ import {selectTopping3} from '../actions/topping'
 
 class ToppingsForm extends PureComponent{
     state = {}
+
     
     handleChange1 = event => {
         this.props.selectTopping1(event.target.value)
@@ -23,7 +24,7 @@ class ToppingsForm extends PureComponent{
     render(){
         const toppings = ["pineapple","corn", "olives", "red onion", "spinach", "cherry tomatoes"]
 
-        let toppingProps = [this.props.topping1, this.props.topping2, this.props.topping3]
+        const toppingProps = [this.props.topping1, this.props.topping2, this.props.topping3]
         
         
         return(
@@ -51,15 +52,19 @@ class ToppingsForm extends PureComponent{
             </div>
             <div>
                 <ul>
-                   Your toppings: {toppingProps.map(topping => <li key={topping}>{topping}</li>)}
-                   </ul>
+                   <p>Your toppings:</p>
+                       <li>{this.props.topping1}</li>
+                       <li>{this.props.topping2}</li>
+                       <li>{this.props.topping3}</li>
+                </ul>
             </div>
             <div>
-            <Link to= {'/base'}>Change base size</Link>
+            <Link to= {'/base'}>Change base</Link>
             </div>
             <div>
             <Link to= {'/sauce'}>Change sauce</Link>
             </div>
+            
             <div>
             <TotalPrice />
             </div>

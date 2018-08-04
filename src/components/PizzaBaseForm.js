@@ -40,32 +40,33 @@ class PizzaBaseForm extends PureComponent{
 
     }
     render(){
-        let toppingProps = [this.props.topping1, this.props.topping2, this.props.topping3]
-
         const small = ["small"]
         const medium = ["medium"]
         const large = ["large"]
         return(
             <div>
+                {this.renderRedirect()}
                 <p>SELECT A BASE</p>
-		{this.renderRedirect()}
                 <select value={this.state.base} onChange= {this.handleChange}>
                 <option>Choose </option>
-                    <option value={small} >Small 25cm €8.99</option>
-                    <option value={medium}>Medium 30cm €10.49</option>
-                    <option value={large}>Large 35cm €13.49</option>
+                    <option value={"small"} >Small 25cm €8.99</option>
+                    <option value={"medium"}>Medium 30cm €10.49</option>
+                    <option value={"large"}>Large 35cm €13.49</option>
                 </select>
                 
                 <div>
-                   Your base: {this.props.base}
+                   {this.props.base && <p>Your base: {this.props.base}</p>}
                 </div>
                 <div>
-                   {!this.props.sauce && <p>Your sauce: {this.props.sauce}</p>}
+                   {this.props.sauce && <p>Your sauce: {this.props.sauce}</p>}
                 </div>
                 <div>
-                <ul>
-                   {!toppingProps && <p>Your toppings:{toppingProps.map(topping => <li key={topping}>{topping}</li>)}</p> }
-                   </ul>
+                {this.props.topping1 || this.props.topping2 ||this.props.topping3 ? <ul>
+                <p>Your toppings:</p>
+                       <li>{this.props.topping1}</li>
+                       <li>{this.props.topping2}</li>
+                       <li>{this.props.topping3}</li>
+                </ul>: <p></p> } 
                 </div>
                 
                 <TotalPrice />

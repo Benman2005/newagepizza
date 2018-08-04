@@ -54,19 +54,21 @@ class SauceForm extends PureComponent {
                     <option value={mix}>Mix it up</option>
                 </select>
                 <div>
-                    Your base:{this.props.base}
+                   {this.props.base && <p>Your base: {this.props.base}</p>}
                 </div>
                 <div>
-                    Your sauce:{this.props.sauce}
+                   {this.props.sauce && <p>Your sauce: {this.props.sauce}</p>}
                 </div>
                 <div>
-                <ul>
-                {!toppingProps && <p>Your toppings:
-                   {toppingProps.map(topping => <li key={topping}>{topping}</li>)}</p>}
-                   </ul>
+                {this.props.topping1 || this.props.topping2 ||this.props.topping3 ? <ul>
+                <p>Your toppings:</p>
+                       <li>{this.props.topping1}</li>
+                       <li>{this.props.topping2}</li>
+                       <li>{this.props.topping3}</li>
+                </ul>: <p></p> } 
                 </div>
                 <div>
-                <Link to= {'/base'}>Change base size</Link>
+                <Link to= {'/base'}>Change base</Link>
                 </div>
                 <div>
 
