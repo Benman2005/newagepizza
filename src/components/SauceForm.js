@@ -27,12 +27,14 @@ class SauceForm extends PureComponent {
     
     handleChange = event => {
         this.props.selectSauce(event.target.value)
-        console.log(event.target.value)
-        console.log(this.props.baseprice + this.props.sauceprice)
+        // console.log(event.target.value)
+        // console.log(this.props.baseprice + this.props.sauceprice)
         this.setState({ redirect: true })
-      }
+    }
     render(){
-        console.log(this.props.baseprice)
+        let toppingProps = [this.props.topping1, this.props.topping2, this.props.topping3]
+
+        // console.log(this.props.baseprice)
         if(!this.props.base) {
                 return <Redirect to='/base'/>;
               }
@@ -52,9 +54,17 @@ class SauceForm extends PureComponent {
                     <option value={mix}>Mix it up</option>
                 </select>
                 <div>
-                   Your base is: {this.props.base}
+                    Your base:{this.props.base}
                 </div>
-
+                <div>
+                    Your sauce:{this.props.sauce}
+                </div>
+                <div>
+                <ul>
+                {!toppingProps && <p>Your toppings:
+                   {toppingProps.map(topping => <li key={topping}>{topping}</li>)}</p>}
+                   </ul>
+                </div>
                 <div>
                 <Link to= {'/base'}>Change base size</Link>
                 </div>
@@ -70,9 +80,16 @@ class SauceForm extends PureComponent {
 
 const mapStateToProps = function (state) {
     return {
+        sauce: state.sauceReducer.sauce,
         base: state.baseReducer.base,
         baseprice: state.baseReducer.price,
-        sauceprice: state.sauceReducer.price
+        sauceprice: state.sauceReducer.price,
+        toppingprice1: state.toppingReducer.price1,
+        toppingprice2: state.toppingReducer.price2,
+        toppingprice3: state.toppingReducer.price3,
+        topping1: state.toppingReducer.topping1,
+        topping2: state.toppingReducer.topping2,
+        topping3: state.toppingReducer.topping3,
     }
 }
 

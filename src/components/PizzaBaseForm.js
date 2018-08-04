@@ -40,22 +40,34 @@ class PizzaBaseForm extends PureComponent{
 
     }
     render(){
-        // if (this.props.base) {
-        //     return <Redirect to='/sauce'/>;
-        //   }
+        let toppingProps = [this.props.topping1, this.props.topping2, this.props.topping3]
+
         const small = ["small"]
         const medium = ["medium"]
         const large = ["large"]
         return(
             <div>
-                
+                <p>SELECT A BASE</p>
 		{this.renderRedirect()}
                 <select value={this.state.base} onChange= {this.handleChange}>
                 <option>Choose </option>
-                    <option value={small} >Small 25cm</option>
-                    <option value={medium}>Medium 30cm</option>
-                    <option value={large}>Large 35cm</option>
+                    <option value={small} >Small 25cm €8.99</option>
+                    <option value={medium}>Medium 30cm €10.49</option>
+                    <option value={large}>Large 35cm €13.49</option>
                 </select>
+                
+                <div>
+                   Your base: {this.props.base}
+                </div>
+                <div>
+                   {!this.props.sauce && <p>Your sauce: {this.props.sauce}</p>}
+                </div>
+                <div>
+                <ul>
+                   {!toppingProps && <p>Your toppings:{toppingProps.map(topping => <li key={topping}>{topping}</li>)}</p> }
+                   </ul>
+                </div>
+                
                 <TotalPrice />
                
             </div>
@@ -65,10 +77,16 @@ class PizzaBaseForm extends PureComponent{
 }
 const mapStateToProps = function (state) {
     return {
-
+        sauce: state.sauceReducer.sauce,
         base: state.baseReducer.base,
-        baseprice: state.baseReducer.price
-
+        baseprice: state.baseReducer.price,
+        sauceprice: state.sauceReducer.price,
+        toppingprice1: state.toppingReducer.price1,
+        toppingprice2: state.toppingReducer.price2,
+        toppingprice3: state.toppingReducer.price3,
+        topping1: state.toppingReducer.topping1,
+        topping2: state.toppingReducer.topping2,
+        topping3: state.toppingReducer.topping3,
     }
 }
 export default connect(mapStateToProps, {selectBase})(PizzaBaseForm)

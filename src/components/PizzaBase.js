@@ -13,7 +13,7 @@ class PizzaBase extends PureComponent{
         return(
             <div>
                 Welcome to NewAgePizza!
-                Please choose a size..
+                
                 {/* <button onClick = {this.handleSelectBase}>25 cm</button> */}
 
                 <PizzaBaseForm />
