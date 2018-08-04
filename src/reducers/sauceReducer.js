@@ -10,12 +10,12 @@ export default function (state ={}, action) {
             switch (action.payload) {
                 case "red":
                 return{
-                    price: 0,
+                    price: 1,
                     sauce: action.payload
                 }
                 case "white":
                 return {
-                    price: 1,
+                    price: 0,
                     sauce: action.payload
                 }
                 case "mix":
