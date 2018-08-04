@@ -4,31 +4,40 @@ import {bases} from '../reducers/baseReducer'
 import { connect } from 'react-redux'
 
 class PizzaBaseForm extends PureComponent{
-    handleSelectBase = () => {
-        console.log(this.props.base)
-        this.props.selectBase(this.props.base)
-   }    
-
+    state = {}
+    // setPrice = function() {
+    //     this.setState({price: 12.99})
+    // }
+    // componentDidMount(){
+    //    this.setPrice()
+    // }   
+    handleChange = event => {
+        this.props.selectBase(event.target.value)
+        console.log(event.target.value)
+        // this.setPrice()
+      }
     render(){
-        // console.log(bases)
-
+        
+        const small = ["small"]
+        const medium = ["medium"]
+        const large = ["large"]
         return(
-            <div>
-            { bases.map(base => (<button key={base} onClick={ this.handleSelectBase}>
-                {base}
-                </button>))}
-                
+            
+                <select value={this.state.base} onChange= {this.handleChange}>
+                <option>Choose </option>
+                    <option value={small}>Small 25cm</option>
+                    <option value={medium}>Medium 30cm</option>
+                    <option value={large}>Large 35cm</option>
+                </select>
 
-        </div>
-        )
+       
+    )
     }
 
 }
 const mapStateToProps = function (state) {
-
     return {
         base: state.baseReducer
-
     }
 }
 export default connect(mapStateToProps, {selectBase})(PizzaBaseForm)
